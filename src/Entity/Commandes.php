@@ -31,6 +31,13 @@ class Commandes
      */
     private $refrence;
 
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Utilisateurs", inversedBy = "commandes", cascade={"persist", "remove"})
+     * @ORM\JoinColumn(nullable=true)
+     */
+    private $utilisateur;
+
     /**
      * @ORM\Column(type="array")
      */
@@ -85,6 +92,18 @@ class Commandes
     public function setProduits(array $produits): self
     {
         $this->produits = $produits;
+
+        return $this;
+    }
+
+    public function getUtilisateur(): ?Utilisateurs
+    {
+        return $this->utilisateur;
+    }
+
+    public function setUtilisateur(?Utilisateurs $utilisateur): self
+    {
+        $this->utilisateur = $utilisateur;
 
         return $this;
     }

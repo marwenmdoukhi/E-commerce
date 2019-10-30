@@ -36,6 +36,27 @@ class Produits
      */
     private $disponible;
 
+
+    /**
+     * @ORM\OneToOne(targetEntity="App\Entity\Media", cascade={"persist", "remove"})
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $image;
+
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Categories", cascade={"persist", "remove"})
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $categories;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Tva", cascade={"persist", "remove"})
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $tva;
+
+
     public function getId(): ?int
     {
         return $this->id;
@@ -85,6 +106,42 @@ class Produits
     public function setDisponible(bool $disponible): self
     {
         $this->disponible = $disponible;
+
+        return $this;
+    }
+
+    public function getImage(): ?Media
+    {
+        return $this->image;
+    }
+
+    public function setImage(Media $image): self
+    {
+        $this->image = $image;
+
+        return $this;
+    }
+
+    public function getCategories(): ?Categories
+    {
+        return $this->categories;
+    }
+
+    public function setCategories(?Categories $categories): self
+    {
+        $this->categories = $categories;
+
+        return $this;
+    }
+
+    public function getTva(): ?Tva
+    {
+        return $this->tva;
+    }
+
+    public function setTva(?Tva $tva): self
+    {
+        $this->tva = $tva;
 
         return $this;
     }

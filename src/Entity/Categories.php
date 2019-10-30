@@ -21,6 +21,12 @@ class Categories
      */
     private $nom;
 
+    /**
+     * @ORM\OneToOne(targetEntity="App\Entity\Media", cascade={"persist", "remove"})
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $image;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -34,6 +40,18 @@ class Categories
     public function setNom(string $nom): self
     {
         $this->nom = $nom;
+
+        return $this;
+    }
+
+    public function getImage(): ?Media
+    {
+        return $this->image;
+    }
+
+    public function setImage(Media $image): self
+    {
+        $this->image = $image;
 
         return $this;
     }

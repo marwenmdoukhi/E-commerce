@@ -51,6 +51,13 @@ class UtlisateursAdresse
      */
     private $complement;
 
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Utilisateurs", inversedBy = "adresses")
+     * @ORM\JoinColumn(nullable=true)
+     */
+    private $utilisateur;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -136,6 +143,18 @@ class UtlisateursAdresse
     public function setComplement(string $complement): self
     {
         $this->complement = $complement;
+
+        return $this;
+    }
+
+    public function getUtilisateur(): ?Utilisateurs
+    {
+        return $this->utilisateur;
+    }
+
+    public function setUtilisateur(?Utilisateurs $utilisateur): self
+    {
+        $this->utilisateur = $utilisateur;
 
         return $this;
     }
